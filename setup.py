@@ -9,4 +9,9 @@ setup(
     license='GPL',
     install_requires=[],
     packages=['music_rename'],
+    entry_points={
+        'console_scripts': [
+            'music-rename=music_rename.console:main'
+        ]
+    }
 )
