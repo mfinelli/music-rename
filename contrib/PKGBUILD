@@ -1,0 +1,21 @@
+pkgname="music-rename"
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="..."
+arch=('any')
+url="..."
+license=('GPL')
+depends=('python')
+makedepends=('git' 'python-setuptools')
+source=("git://github.com/mfinelli/music-rename.git")
+md5sums=('SKIP')
+
+build() {
+    cd "$srcdir/music-rename"
+    python setup.py build
+}
+
+package() {
+    cd "$srcdir/music-rename"
+    python setup.py install --root="$pkgdir" --optimize=1
+}
