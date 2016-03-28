@@ -42,4 +42,8 @@ def main():
         help='Work from a given directory. Otherwise operates on the ' \
                 'current working directory.')
     args = parser.parse_args()
+
+    if args.directory is not None and os.path.isdir(args.directory):
+        os.chdir(args.directory)
+
     print("Current directory: " + os.getcwd())
