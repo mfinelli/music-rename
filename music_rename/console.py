@@ -17,6 +17,7 @@
 import os
 import argparse
 import music_rename
+from music_rename import artists
 
 MAIN_DESCRIPTION = """Use music-rename to organize and rename music files
     after ripping them."""
@@ -47,3 +48,4 @@ def main():
         os.chdir(args.directory)
 
     print("Current directory: " + os.getcwd())
+    music_rename.artists.get_artist_directories()
