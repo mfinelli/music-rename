@@ -28,9 +28,18 @@ EPILOG = """music-rename:  Copyright (C) 2016 Mario Finelli.
     General Public License that you should have received along with
     this program. (If not, see <http://www.gnu.org/licenses/>)"""
 
+
 def main():
-    parser = argparse.ArgumentParser(description=MAIN_DESCRIPTION,epilog=EPILOG)
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s ' + music_rename.__version__)
-    parser.add_argument('-d', '--directory', help='foo help')
+    parser = argparse.ArgumentParser(description=MAIN_DESCRIPTION,
+                                     epilog=EPILOG)
+    parser.add_argument('-v',
+                        '--version',
+                        action='version',
+                        version='%(prog)s ' + music_rename.__version__)
+    parser.add_argument(
+        '-d',
+        '--directory',
+        help='Work from a given directory. Otherwise operates on the ' \
+                'current working directory.')
     args = parser.parse_args()
     print("Current directory: " + os.getcwd())
