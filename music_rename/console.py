@@ -16,6 +16,8 @@
 
 import os
 import argparse
+import sys
+
 import music_rename
 from music_rename import artists
 
@@ -44,8 +46,11 @@ def main():
                 'current working directory.')
     args = parser.parse_args()
 
-    if args.directory is not None and os.path.isdir(args.directory):
-        os.chdir(args.directory)
+    if args.directory is not None:
+        if os.path.isdir(args.directory):
+            os.chdir(args.directory)
+        else:
+            sys.exit(1)
 
     print("Current directory: " + os.getcwd())
     music_rename.artists.get_artist_directories()
