@@ -1,8 +1,9 @@
+import music_rename
 from setuptools import setup
 
 setup(
     name='music_rename',
-    version='1.0.0',
+    version=music_rename.__version__,
     description='Rename music files after ripping with EAC.',
     url='https://github.com/mfinelli/music-rename',
     author='Mario Finelli',
