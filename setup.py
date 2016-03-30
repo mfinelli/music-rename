@@ -8,7 +8,10 @@ setup(
     url='https://github.com/mfinelli/music-rename',
     author='Mario Finelli',
     license='GPL',
-    install_requires=[],
+    install_requires=[
+        'colorama',
+        'termcolor'
+    ],
     packages=['music_rename'],
     entry_points={
         'console_scripts': [
