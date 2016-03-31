@@ -14,3 +14,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+def sanitize_final_character(string):
+    # These are characters that we do NOT want to allow as the final
+    # character of a file or directory name.
+    no_last = ['(','.','-','[',',','&','\'']
+
+    # First remove all surrounding whitespace.
+    string = string.strip()
+
+    # While the last character is not allowed remove it and strip surrounding
+    # whitespace again.
+    while string[-1] in no_last:
+        string = string[:-1].strip()
+
+    return string
