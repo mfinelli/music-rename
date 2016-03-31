@@ -18,6 +18,9 @@ import os
 import argparse
 import sys
 
+from colorama import init
+init()
+
 import music_rename
 from music_rename import artists
 
