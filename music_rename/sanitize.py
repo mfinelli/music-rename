@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import unicodedata
+
 
 def sanitize_final_character(string):
     # These are characters that we do NOT want to allow as the final
@@ -29,3 +31,10 @@ def sanitize_final_character(string):
         string = string[:-1].strip()
 
     return string
+
+
+# https://docs.python.org/3.5/library/unicodedata.html#unicodedata.normalize
+# http://stackoverflow.com/a/517974
+def transliterate(string):
+    nfkd = unicodedata.normalize('NFKD', string)
+    return ''.join([c for c in nfkd if not unicodedata.combining(c)])
