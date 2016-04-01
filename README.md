@@ -1,5 +1,7 @@
 # Music Rename
 
+[![Build Status](https://travis-ci.org/mfinelli/music-rename.svg?branch=master)](https://travis-ci.org/mfinelli/music-rename)
+
 Quick script to reformat/rename directories of music files (FLAC) after
 ripping with EAC.
 
