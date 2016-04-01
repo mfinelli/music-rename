@@ -16,3 +16,5 @@ When done:
 ```shell
 $ sudo python setup.py develop --uninstall
 ```
+
+To run unit tests you must install `python-pytest`.
