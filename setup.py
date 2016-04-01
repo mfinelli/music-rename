@@ -8,7 +8,7 @@ setup(name='music_rename',
       author='Mario Finelli',
       license='GPL',
       install_requires=[
-          'colorama', 'termcolor'
+          'colorama', 'termcolor', 'unidecode'
       ],
       packages=['music_rename'],
       entry_points={

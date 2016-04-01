@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import unicodedata
+from unidecode import unidecode
 
 
 def sanitize_final_character(string):
@@ -33,8 +34,5 @@ def sanitize_final_character(string):
     return string
 
 
-# https://docs.python.org/3.5/library/unicodedata.html#unicodedata.normalize
-# http://stackoverflow.com/a/517974
 def transliterate(string):
-    nfkd = unicodedata.normalize('NFKD', string)
-    return ''.join([c for c in nfkd if not unicodedata.combining(c)])
+    return unidecode(string)
