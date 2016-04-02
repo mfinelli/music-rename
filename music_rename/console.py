@@ -47,6 +47,10 @@ def main():
         '--directory',
         help='Work from a given directory. Otherwise operates on the ' \
                 'current working directory.')
+    parser.add_argument('--dry-run',
+                        action='store_false',
+                        dest='rename_active',
+                        help='Do not actually rename/move files and folders.')
     args = parser.parse_args()
 
     if args.directory is not None:
