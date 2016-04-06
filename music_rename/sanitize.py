@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
 import unicodedata
 from unidecode import unidecode
 
@@ -36,3 +37,7 @@ def sanitize_final_character(string):
 
 def transliterate(string):
     return unidecode(string)
+
+
+def remove_dash_space(string):
+    return re.sub(r'\-\s', ' ', string)
