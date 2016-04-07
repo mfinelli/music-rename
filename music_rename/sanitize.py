@@ -48,8 +48,7 @@ def remove_unrecognized_characters(string):
 
 
 def consolidate_whitespace(string):
-    single_spaces = re.sub(r'\s', ' ', string)
-    return re.sub(r'\s+', ' ', single_spaces)
+    return re.sub(r'\s+', ' ', re.sub(r'\s', ' ', string))
 
 
 def truncate(string, length):
