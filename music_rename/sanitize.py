@@ -41,3 +41,7 @@ def transliterate(string):
 
 def remove_dash_space(string):
     return re.sub(r'\-\s', ' ', string)
+
+
+def remove_unrecognized_characters(string):
+    return re.sub(r'[^0-9A-Za-z,& \-\(\)\[\]\.]', '', string)
