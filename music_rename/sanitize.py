@@ -45,3 +45,8 @@ def remove_dash_space(string):
 
 def remove_unrecognized_characters(string):
     return re.sub(r'[^0-9A-Za-z,& \-\(\)\[\]\.]', '', string)
+
+
+def consolidate_whitespace(string):
+    single_spaces = re.sub(r'\s', ' ', string)
+    return re.sub(r'\s+', ' ', single_spaces)
