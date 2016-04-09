@@ -23,6 +23,7 @@ init()
 
 import music_rename
 from music_rename import artists
+from music_rename import config
 
 MAIN_DESCRIPTION = """Use music-rename to organize and rename music files
     after ripping them."""
@@ -51,7 +52,14 @@ def main():
                         action='store_false',
                         dest='rename_active',
                         help='Do not actually rename/move files and folders.')
+    parser.add_argument('--configure',
+            action='store_true',
+            help='Configure default values.')
     args = parser.parse_args()
+
+    if args.configure:
+        music_rename.config.ask_user_config();
+        sys.exit(0)
 
     if args.directory is not None:
         if os.path.isdir(args.directory):
