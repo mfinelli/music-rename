@@ -40,6 +40,12 @@ def transliterate(string):
 
 
 def remove_dash_space(string):
+    """Remove any dashes that are followed by whitespace.
+
+    This usually occurs when a ':' is transformed into a - when ripping from
+    the CD. This results in a title like "Some thing- sub thing" which looks
+    ugly. This will remove dashes in that situation but not in cases like
+    "This-thing" which still looks OK."""
     return re.sub(r'\-\s', ' ', string)
 
 
@@ -48,6 +54,8 @@ def remove_unrecognized_characters(string):
 
 
 def consolidate_whitespace(string):
+    # First we want to normalize ALL whitespace (newlines, tabs, etc) into
+    # single spaces, then we combine multiple spaces into single spaces.
     return re.sub(r'\s+', ' ', re.sub(r'\s', ' ', string))
 
 
