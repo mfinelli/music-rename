@@ -56,3 +56,10 @@ def truncate(string, length):
         return string
     else:
         return string[:length]
+
+def sanitize(string, length):
+    translit = transliterate(string)
+    no_dashes = remove_dash_space(translit)
+    no_unrecognized = remove_unrecognized_characters(no_dashes)
+    whitespace = consolidate_whitespace(no_unrecognized)
+    return truncate(whitespace, length)
