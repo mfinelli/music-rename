@@ -28,5 +28,6 @@ def test_multipe_remove_whitespace_rounds():
 def test_leave_middle_characters_alone():
     assert sanitize.sanitize_final_character('abc \' abc') == 'abc \' abc'
 
+
 def test_remove_trailing_dash():
     assert sanitize.sanitize_final_character('abc-') == 'abc'
