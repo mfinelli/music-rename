@@ -62,4 +62,4 @@ def sanitize(string, length):
     no_dashes = remove_dash_space(translit)
     no_unrecognized = remove_unrecognized_characters(no_dashes)
     whitespace = consolidate_whitespace(no_unrecognized)
-    return truncate(whitespace, length)
+    return sanitize_final_character(truncate(whitespace, length))

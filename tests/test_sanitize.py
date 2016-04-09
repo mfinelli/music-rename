@@ -5,3 +5,6 @@ def test_no_change():
 
 def test_truncate():
     assert sanitize.sanitize('abcdef', 3) == 'abc'
+
+def test_no_trailing_dash():
+    assert sanitize.sanitize('abc-', 10) == 'abc'
