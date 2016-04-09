@@ -57,9 +57,8 @@ def truncate(string, length):
     else:
         return string[:length]
 
+
 def sanitize(string, length):
-    translit = transliterate(string)
-    no_dashes = remove_dash_space(translit)
-    no_unrecognized = remove_unrecognized_characters(no_dashes)
-    whitespace = consolidate_whitespace(no_unrecognized)
-    return sanitize_final_character(truncate(whitespace, length))
+    return sanitize_final_character(truncate(
+        consolidate_whitespace(remove_unrecognized_characters(
+            remove_dash_space(transliterate(string)))), length))
