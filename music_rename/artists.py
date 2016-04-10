@@ -15,8 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+from termcolor import colored
+from music_rename import sanitize
 
 
-def get_artist_directories():
+def get_artist_directories(config, rename_active):
     for dirname in os.listdir('.'):
-        print(dirname)
+        sanitized_artist = sanitize.sanitize(dirname, config['artist_maxlen'])
+
+        if dirname != sanitized_artist:
+            t = colored(dirname + ' -> ' + sanitized_artist, 'yellow')
+            print(t)
+        else:
+            print(dirname)

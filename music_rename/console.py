@@ -18,6 +18,7 @@ import os
 import argparse
 import sys
 
+from termcolor import colored
 from colorama import init
 init()
 
@@ -67,5 +68,10 @@ def main():
         else:
             sys.exit(1)
 
-    print("Current directory: " + os.getcwd())
-    music_rename.artists.get_artist_directories()
+    config = music_rename.config.get_populated_configuration()
+
+    if args.rename_active:
+        print(colored('Actively moving files!', 'red', attrs=['bold']))
+    print("Current directory: " + os.getcwd() + "\n")
+
+    music_rename.artists.get_artist_directories(config, args.rename_active)
