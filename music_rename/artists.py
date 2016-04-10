@@ -28,7 +28,11 @@ def get_artist_directories(config, rename_active):
         sanitized_artist = sanitize.sanitize(dirname, config['artist_maxlen'])
 
         if dirname != sanitized_artist:
-            t = colored(dirname + ' -> ' + sanitized_artist, 'yellow')
-            print(t)
+            print(colored(dirname + ' -> ' + sanitized_artist, 'yellow'))
+
+            if rename_active:
+                os.rename(dirname, sanitized_artist)
         else:
             print(dirname)
+
+        print('')
