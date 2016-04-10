@@ -53,12 +53,12 @@ def main():
                         dest='rename_active',
                         help='Do not actually rename/move files and folders.')
     parser.add_argument('--configure',
-            action='store_true',
-            help='Configure default values.')
+                        action='store_true',
+                        help='Configure default values.')
     args = parser.parse_args()
 
     if args.configure:
-        music_rename.config.ask_user_config();
+        music_rename.config.ask_user_config()
         sys.exit(0)
 
     if args.directory is not None:

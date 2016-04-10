@@ -16,6 +16,7 @@
 
 import os
 
+
 def get_artist_directories():
     for dirname in os.listdir('.'):
         print(dirname)

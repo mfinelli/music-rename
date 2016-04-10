@@ -26,14 +26,25 @@ DEFAULT_EXTRA_DIR_MAXLEN = 13
 DEFAULT_EXTRA_MAXLEN = 25
 DEFAULT_SONG_MAXLEN = 38
 
+
 def ask_user_config():
     config = read_default_configuration()
 
-    artist_maxlen = prompt_user_config_option('Enforce maximum length of artist folders', DEFAULT_ARTIST_MAXLEN, config.get('artist_maxlen')).strip()
-    album_maxlen = prompt_user_config_option('Enforce maximum length of album folders', DEFAULT_ALBUM_MAXLEN, config.get('album_maxlen')).strip()
-    extra_dir_maxlen = prompt_user_config_option('Enforce maximum length of directories inside an album folders', DEFAULT_EXTRA_DIR_MAXLEN, config.get('extra_dir_maxlen')).strip()
-    extra_maxlen = prompt_user_config_option('Enforce maximum length of file in directories inside album folders', DEFAULT_EXTRA_MAXLEN, config.get('extra_maxlen')).strip()
-    song_maxlen = prompt_user_config_option('Enforce maximum length of song filenames', DEFAULT_SONG_MAXLEN, config.get('song_maxlen')).strip()
+    artist_maxlen = prompt_user_config_option(
+        'Enforce maximum length of artist folders', DEFAULT_ARTIST_MAXLEN,
+        config.get('artist_maxlen')).strip()
+    album_maxlen = prompt_user_config_option(
+        'Enforce maximum length of album folders', DEFAULT_ALBUM_MAXLEN,
+        config.get('album_maxlen')).strip()
+    extra_dir_maxlen = prompt_user_config_option(
+        'Enforce maximum length of directories inside an album folders',
+        DEFAULT_EXTRA_DIR_MAXLEN, config.get('extra_dir_maxlen')).strip()
+    extra_maxlen = prompt_user_config_option(
+        'Enforce maximum length of file in directories inside album folders',
+        DEFAULT_EXTRA_MAXLEN, config.get('extra_maxlen')).strip()
+    song_maxlen = prompt_user_config_option(
+        'Enforce maximum length of song filenames', DEFAULT_SONG_MAXLEN,
+        config.get('song_maxlen')).strip()
 
     new_config = configparser.ConfigParser()
     new_config['DEFAULT'] = {}
@@ -65,10 +76,13 @@ def read_default_configuration():
 def get_config_filepath():
     return os.path.join(os.path.expanduser('~'), CONFIG_FILENAME)
 
+
 def write_configuration_file(config):
     with open(get_config_filepath(), 'w') as config_file:
         config.write(config_file)
 
+
 def prompt_user_config_option(prompt, default, current):
     print(colored(prompt, 'blue', attrs=['bold']))
-    return input('(default: ' + str(default) + '; current: ' + str(current) + ') -> ')
+    return input('(default: ' + str(default) + '; current: ' + str(current) +
+                 ') -> ')
