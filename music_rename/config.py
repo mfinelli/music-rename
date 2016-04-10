@@ -86,3 +86,21 @@ def prompt_user_config_option(prompt, default, current):
     print(colored(prompt, 'blue', attrs=['bold']))
     return input('(default: ' + str(default) + '; current: ' + str(current) +
                  ') -> ')
+
+
+def get_populated_configuration():
+    saved_config = read_default_configuration()
+    populated_config = {}
+
+    populated_config['artist_maxlen'] = int(saved_config.get(
+        'artist_maxlen', DEFAULT_ARTIST_MAXLEN))
+    populated_config['album_maxlen'] = int(saved_config.get(
+        'album_maxlen', DEFAULT_ALBUM_MAXLEN))
+    populated_config['extra_dir_maxlen'] = int(saved_config.get(
+        'extra_dir_maxlen', DEFAULT_EXTRA_DIR_MAXLEN))
+    populated_config['extra_maxlen'] = int(saved_config.get(
+        'extra_maxlen', DEFAULT_EXTRA_MAXLEN))
+    populated_config['song_maxlen'] = int(saved_config.get(
+        'song_maxlen', DEFAULT_SONG_MAXLEN))
+
+    return populated_config
