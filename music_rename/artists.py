@@ -21,6 +21,10 @@ from music_rename import sanitize
 
 def get_artist_directories(config, rename_active):
     for dirname in os.listdir('.'):
+        if not os.path.isdir(dirname):
+            print('Skipping non-directory: ' + dirname)
+            continue
+
         sanitized_artist = sanitize.sanitize(dirname, config['artist_maxlen'])
 
         if dirname != sanitized_artist:
