@@ -60,4 +60,22 @@ def do_album_contents(full_dirname, directory, config, rename_active):
             else:
                 print(colored('Skipping unknown type: ' + ext, 'red'))
         else:
-            print('Found an extra dir: ' + dirname)
+            # TODO: handle extra_dir
+            do_extra_dir(os.path.join('.', directory), dirname, config, rename_active)
+
+def do_extra_dir(full_dirname, directory, config, rename_active):
+    for dirname in os.listdir(os.path.join(full_dirname, directory)):
+        if os.path.isdir(os.path.join(full_dirname, directory, dirname)):
+            print(colored('No support for directories this deep: ' + dirname, 'red'))
+        else:
+            filename = os.path.splitext(dirname)[0]
+            ext = os.path.splitext(dirname)[1]
+            sanitized_item = sanitize.sanitize(filename, config['extra_maxlen'])
+
+            if filename != sanitized_item:
+                print(colored(dirname + ' -> ' + sanitized_item + ext, 'yellow'))
+
+                if rename_active:
+                    os.rename(dirname, sanitized_item + ext)
+            else:
+                print(dirname)
