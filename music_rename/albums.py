@@ -35,4 +35,25 @@ def get_album_directories(directory, config, rename_active):
         else:
             print(dirname)
 
+        do_album_contents(os.path.join('.', directory), dirname, config, rename_active)
+
         print('')
+
+def do_album_contents(full_dirname, directory, config, rename_active):
+    for dirname in os.listdir(os.path.join(full_dirname, directory)):
+        if not os.path.isdir(os.path.join(full_dirname, directory, dirname)):
+            filename = os.path.splitext(dirname)[0]
+            ext = os.path.splitext(dirname)[1]
+            if ext in ['.flac', '.mp3', '.m4a', '.ogg']:
+                sanitized_song = sanitize.sanitize(filename, config['song_maxlen'])
+                if filename != sanitized_song:
+                    print(colored(dirname + ' -> ' + sanitized_song + ext, 'yellow'))
+
+                    if rename_active:
+                        os.rename(dirname, sanitized_song + ext)
+                else:
+                    print(dirname)
+            else:
+                print(colored('Skipping unknown type: ' + ext, 'red'))
+        else:
+            print('Found an extra dir: ' + dirname)
