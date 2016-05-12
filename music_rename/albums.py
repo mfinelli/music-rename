@@ -53,6 +53,10 @@ def do_album_contents(full_dirname, directory, config, rename_active):
                         os.rename(dirname, sanitized_song + ext)
                 else:
                     print(dirname)
+            elif ext == '.md5':
+                # Delete sum files since we're going to generate a new one.
+                if rename_active:
+                    os.remove(dirname)
             else:
                 print(colored('Skipping unknown type: ' + ext, 'red'))
         else:
