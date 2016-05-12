@@ -32,6 +32,7 @@ def get_artist_directories(config, rename_active):
 
             if rename_active:
                 os.rename(dirname, sanitized_artist)
+                dirname = sanitized_artist
         else:
             print(dirname)
 
