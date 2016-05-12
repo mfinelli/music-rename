@@ -16,27 +16,23 @@
 
 import os
 from termcolor import colored
-from music_rename import albums
 from music_rename import sanitize
 
-
-def get_artist_directories(config, rename_active):
-    for dirname in os.listdir('.'):
-        if not os.path.isdir(dirname):
+def get_album_directories(directory, config, rename_active):
+    for dirname in os.listdir(os.path.join('.', directory)):
+        if not os.path.isdir(os.path.join('.', directory, dirname)):
             print('Skipping non-directory: ' + dirname)
             continue
 
-        sanitized_artist = sanitize.sanitize(dirname, config['artist_maxlen'])
+        sanitized_album = sanitize.sanitize(dirname, config['album_maxlen'])
 
-        if dirname != sanitized_artist:
-            print(colored(dirname + ' -> ' + sanitized_artist, 'yellow'))
+        if dirname != sanitized_album:
+            print(colored(dirname + ' -> ' + sanitized_album, 'yellow'))
 
             if rename_active:
-                os.rename(dirname, sanitized_artist)
-                dirname = sanitized_artist
+                os.rename(dirname, sanitized_album)
+                dirname = sanitized_album
         else:
             print(dirname)
-
-        albums.get_album_directories(dirname, config, rename_active)
 
         print('')
