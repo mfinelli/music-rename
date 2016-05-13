@@ -18,6 +18,7 @@ import os
 from termcolor import colored
 from music_rename import sanitize
 
+
 def get_album_directories(directory, config, rename_active):
     for dirname in os.listdir(os.path.join('.', directory)):
         if not os.path.isdir(os.path.join('.', directory, dirname)):
@@ -35,9 +36,11 @@ def get_album_directories(directory, config, rename_active):
         else:
             print(dirname)
 
-        do_album_contents(os.path.join('.', directory), dirname, config, rename_active)
+        do_album_contents(
+            os.path.join('.', directory), dirname, config, rename_active)
 
         print('')
+
 
 def do_album_contents(full_dirname, directory, config, rename_active):
     for dirname in os.listdir(os.path.join(full_dirname, directory)):
@@ -45,9 +48,11 @@ def do_album_contents(full_dirname, directory, config, rename_active):
             filename = os.path.splitext(dirname)[0]
             ext = os.path.splitext(dirname)[1]
             if ext in ['.flac', '.mp3', '.m4a', '.ogg']:
-                sanitized_song = sanitize.sanitize(filename, config['song_maxlen'])
+                sanitized_song = sanitize.sanitize(filename,
+                                                   config['song_maxlen'])
                 if filename != sanitized_song:
-                    print(colored(dirname + ' -> ' + sanitized_song + ext, 'yellow'))
+                    print(colored(dirname + ' -> ' + sanitized_song + ext,
+                                  'yellow'))
 
                     if rename_active:
                         os.rename(dirname, sanitized_song + ext)
@@ -61,19 +66,24 @@ def do_album_contents(full_dirname, directory, config, rename_active):
                 print(colored('Skipping unknown type: ' + ext, 'red'))
         else:
             # TODO: handle extra_dir
-            do_extra_dir(os.path.join('.', directory), dirname, config, rename_active)
+            do_extra_dir(
+                os.path.join('.', directory), dirname, config, rename_active)
+
 
 def do_extra_dir(full_dirname, directory, config, rename_active):
     for dirname in os.listdir(os.path.join(full_dirname, directory)):
         if os.path.isdir(os.path.join(full_dirname, directory, dirname)):
-            print(colored('No support for directories this deep: ' + dirname, 'red'))
+            print(colored('No support for directories this deep: ' + dirname,
+                          'red'))
         else:
             filename = os.path.splitext(dirname)[0]
             ext = os.path.splitext(dirname)[1]
-            sanitized_item = sanitize.sanitize(filename, config['extra_maxlen'])
+            sanitized_item = sanitize.sanitize(filename,
+                                               config['extra_maxlen'])
 
             if filename != sanitized_item:
-                print(colored(dirname + ' -> ' + sanitized_item + ext, 'yellow'))
+                print(colored(dirname + ' -> ' + sanitized_item + ext,
+                              'yellow'))
 
                 if rename_active:
                     os.rename(dirname, sanitized_item + ext)
