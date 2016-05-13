@@ -65,7 +65,17 @@ def do_album_contents(full_dirname, directory, config, rename_active):
             else:
                 print(colored('Skipping unknown type: ' + ext, 'red'))
         else:
-            # TODO: handle extra_dir
+            sanitized_dir = sanitize.sanitize(dirname, config['extra_dir_maxlen'])
+
+            if dirname != sanitized_dir:
+                print(colored(dirname + ' -> ' + sanitized_dir, 'yellow'))
+
+                if rename_active:
+                    os.rename(dirname, sanitized_dir)
+                    dirname = sanitized_dir
+            else:
+                print(dirname)
+
             do_extra_dir(
                 os.path.join('.', directory), dirname, config, rename_active)
 
