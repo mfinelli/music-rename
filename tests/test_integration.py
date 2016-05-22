@@ -18,6 +18,15 @@ def dir(request):
     os.mknod(os.path.join(dir, 'somefile.txt'))
     os.mknod(os.path.join(dir, 'øther fíle.txt'))
 
+    albums = ['[1999] Some album', '[1999] Ánother album', '[1999] A really long album title that needs to be truncated']
+    for album in albums:
+        os.mkdir(os.path.join(dir, 'Fine', album))
+        os.mkdir(os.path.join(dir, 'Sömé Àccents', album))
+    os.mknod(os.path.join(dir, 'Fine', 'album file.txt'))
+    os.mknod(os.path.join(dir, 'Fine', 'ânother album file.txt'))
+    os.mknod(os.path.join(dir, 'Sömé Àccents', 'album file.txt'))
+    os.mknod(os.path.join(dir, 'Sömé Àccents', 'ânother album file.txt'))
+
     prev = os.getcwd()
     os.chdir(dir)
 
@@ -64,3 +73,28 @@ def test_artists(dir):
     assert os.path.exists(os.path.join(dir, 'Some directory that is way too m'))
     assert os.path.exists(os.path.join(dir, 'somefile.txt'))
     assert os.path.exists(os.path.join(dir, 'øther fíle.txt'))
+
+def test_albums(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] A really long album title that needs to be truncated'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'ânother album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] A really long album title that needs to be truncated'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', 'ânother album file.txt'))
+
+    music_rename.artists.get_artist_directories(music_rename.config.get_populated_configuration(), True)
+
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] A really long album ti'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'ânother album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents', '[1999] Another album'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents', '[1999] A really long album ti'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents', 'ânother album file.txt'))
