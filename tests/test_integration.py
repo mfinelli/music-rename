@@ -15,6 +15,8 @@ def dir(request):
     os.mkdir(os.path.join(dir, 'With_Underscore'))
     os.mkdir(os.path.join(dir, 'Sömé Àccents'))
     os.mkdir(os.path.join(dir, 'Some directory that is way too many characters'))
+    os.mknod(os.path.join(dir, 'somefile.txt'))
+    os.mknod(os.path.join(dir, 'øther fíle.txt'))
 
     prev = os.getcwd()
     os.chdir(dir)
@@ -31,6 +33,8 @@ def test_dry_run_artists(dir):
     assert os.path.exists(os.path.join(dir, 'With_Underscore'))
     assert os.path.exists(os.path.join(dir, 'Sömé Àccents'))
     assert os.path.exists(os.path.join(dir, 'Some directory that is way too many characters'))
+    assert os.path.exists(os.path.join(dir, 'somefile.txt'))
+    assert os.path.exists(os.path.join(dir, 'øther fíle.txt'))
 
     music_rename.artists.get_artist_directories(music_rename.config.get_populated_configuration(), False)
 
@@ -39,6 +43,8 @@ def test_dry_run_artists(dir):
     assert os.path.exists(os.path.join(dir, 'With_Underscore'))
     assert os.path.exists(os.path.join(dir, 'Sömé Àccents'))
     assert os.path.exists(os.path.join(dir, 'Some directory that is way too many characters'))
+    assert os.path.exists(os.path.join(dir, 'somefile.txt'))
+    assert os.path.exists(os.path.join(dir, 'øther fíle.txt'))
 
 def test_artists(dir):
     assert os.path.exists(os.path.join(dir, 'Fine'))
@@ -46,6 +52,8 @@ def test_artists(dir):
     assert os.path.exists(os.path.join(dir, 'With_Underscore'))
     assert os.path.exists(os.path.join(dir, 'Sömé Àccents'))
     assert os.path.exists(os.path.join(dir, 'Some directory that is way too many characters'))
+    assert os.path.exists(os.path.join(dir, 'somefile.txt'))
+    assert os.path.exists(os.path.join(dir, 'øther fíle.txt'))
 
     music_rename.artists.get_artist_directories(music_rename.config.get_populated_configuration(), True)
 
@@ -54,3 +62,5 @@ def test_artists(dir):
     assert os.path.exists(os.path.join(dir, 'WithUnderscore'))
     assert os.path.exists(os.path.join(dir, 'Some Accents'))
     assert os.path.exists(os.path.join(dir, 'Some directory that is way too m'))
+    assert os.path.exists(os.path.join(dir, 'somefile.txt'))
+    assert os.path.exists(os.path.join(dir, 'øther fíle.txt'))
