@@ -31,7 +31,7 @@ def get_album_directories(directory, config, rename_active):
             print(colored(dirname + ' -> ' + sanitized_album, 'yellow'))
 
             if rename_active:
-                os.rename(dirname, sanitized_album)
+                os.rename(os.path.join(directory, dirname), os.path.join(directory, sanitized_album))
                 dirname = sanitized_album
         else:
             print(dirname)
