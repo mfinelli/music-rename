@@ -33,7 +33,9 @@ def get_album_directories(artist_dir, config, rename_active):
             print(colored(album_dir + ' -> ' + sanitized_album, 'yellow'))
 
             if rename_active:
-                os.rename(os.path.join(artist_dir, album_dir), os.path.join(artist_dir, sanitized_album))
+                os.rename(
+                    os.path.join(artist_dir, album_dir), os.path.join(
+                        artist_dir, sanitized_album))
                 album_dir = sanitized_album
         else:
             print(album_dir)
@@ -66,7 +68,8 @@ def do_album_contents(full_dirname, directory, config, rename_active):
             else:
                 print(colored('Skipping unknown type: ' + ext, 'red'))
         else:
-            sanitized_dir = sanitize.sanitize(dirname, config['extra_dir_maxlen'])
+            sanitized_dir = sanitize.sanitize(dirname,
+                                              config['extra_dir_maxlen'])
 
             if dirname != sanitized_dir:
                 print(colored(dirname + ' -> ' + sanitized_dir, 'yellow'))
@@ -78,7 +81,8 @@ def do_album_contents(full_dirname, directory, config, rename_active):
                 print(dirname)
 
             do_extra_dir(
-                os.path.join('.', full_dirname, directory), dirname, config, rename_active)
+                os.path.join('.', full_dirname, directory), dirname, config,
+                rename_active)
 
 
 def do_extra_dir(full_dirname, directory, config, rename_active):
