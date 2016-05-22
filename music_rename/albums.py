@@ -77,7 +77,7 @@ def do_album_contents(full_dirname, directory, config, rename_active):
                 print(dirname)
 
             do_extra_dir(
-                os.path.join('.', directory), dirname, config, rename_active)
+                os.path.join('.', full_dirname, directory), dirname, config, rename_active)
 
 
 def do_extra_dir(full_dirname, directory, config, rename_active):
