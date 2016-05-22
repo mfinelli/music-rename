@@ -25,6 +25,21 @@ def dir(request):
     request.addfinalizer(cleanup)
     return dir
 
+def test_dry_run_artists(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine'))
+    assert os.path.exists(os.path.join(dir, 'With Space'))
+    assert os.path.exists(os.path.join(dir, 'With_Underscore'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents'))
+    assert os.path.exists(os.path.join(dir, 'Some directory that is way too many characters'))
+
+    music_rename.artists.get_artist_directories(music_rename.config.get_populated_configuration(), False)
+
+    assert os.path.exists(os.path.join(dir, 'Fine'))
+    assert os.path.exists(os.path.join(dir, 'With Space'))
+    assert os.path.exists(os.path.join(dir, 'With_Underscore'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents'))
+    assert os.path.exists(os.path.join(dir, 'Some directory that is way too many characters'))
+
 def test_artists(dir):
     assert os.path.exists(os.path.join(dir, 'Fine'))
     assert os.path.exists(os.path.join(dir, 'With Space'))
