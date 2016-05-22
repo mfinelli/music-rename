@@ -6,7 +6,7 @@ import music_rename
 from music_rename import artists
 from music_rename import config
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture()
 def dir(request):
     dir = tempfile.mkdtemp()
 
@@ -18,8 +18,6 @@ def dir(request):
 
     prev = os.getcwd()
     os.chdir(dir)
-    config = music_rename.config.get_populated_configuration()
-    music_rename.artists.get_artist_directories(config, True)
 
     def cleanup():
         os.chdir(prev)
@@ -28,6 +26,14 @@ def dir(request):
     return dir
 
 def test_artists(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine'))
+    assert os.path.exists(os.path.join(dir, 'With Space'))
+    assert os.path.exists(os.path.join(dir, 'With_Underscore'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents'))
+    assert os.path.exists(os.path.join(dir, 'Some directory that is way too many characters'))
+
+    music_rename.artists.get_artist_directories(music_rename.config.get_populated_configuration(), True)
+
     assert os.path.exists(os.path.join(dir, 'Fine'))
     assert os.path.exists(os.path.join(dir, 'With Space'))
     assert os.path.exists(os.path.join(dir, 'WithUnderscore'))
