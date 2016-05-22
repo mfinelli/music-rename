@@ -74,6 +74,31 @@ def test_artists(dir):
     assert os.path.exists(os.path.join(dir, 'somefile.txt'))
     assert os.path.exists(os.path.join(dir, 'øther fíle.txt'))
 
+def test_dry_run_albums(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] A really long album title that needs to be truncated'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'ânother album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] A really long album title that needs to be truncated'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', 'ânother album file.txt'))
+
+    music_rename.artists.get_artist_directories(music_rename.config.get_populated_configuration(), False)
+
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] A really long album title that needs to be truncated'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Fine', 'ânother album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] Some album'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', '[1999] A really long album title that needs to be truncated'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', 'album file.txt'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents', 'ânother album file.txt'))
+
 def test_albums(dir):
     assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album'))
     assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album'))
