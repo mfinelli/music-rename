@@ -45,47 +45,47 @@ def get_album_directories(artist_dir, config, rename_active):
         print('')
 
 
-def do_album_contents(full_dirname, directory, config, rename_active):
-    for dirname in os.listdir(os.path.join(full_dirname, directory)):
-        if not os.path.isdir(os.path.join(full_dirname, directory, dirname)):
-            filename = os.path.splitext(dirname)[0]
-            ext = os.path.splitext(dirname)[1]
+def do_album_contents(artist_dir, album_dir, config, rename_active):
+    artist_album_dir = os.path.join(artist_dir, album_dir)
+
+    for album_item in os.listdir(artist_album_dir):
+        if not os.path.isdir(os.path.join(artist_album_dir, album_item)):
+            filename = os.path.splitext(album_item)[0]
+            ext = os.path.splitext(album_item)[1]
             if ext in ['.flac', '.mp3', '.m4a', '.ogg']:
                 sanitized_song = sanitize.sanitize(filename,
                                                    config['song_maxlen'])
                 if filename != sanitized_song:
-                    print(colored(dirname + ' -> ' + sanitized_song + ext,
+                    print(colored(album_item + ' -> ' + sanitized_song + ext,
                                   'yellow'))
 
                     if rename_active:
                         os.rename(
-                            os.path.join(full_dirname, directory, dirname),
-                            os.path.join(full_dirname, directory,
+                            os.path.join(artist_album_dir, album_item),
+                            os.path.join(artist_album_dir,
                                          sanitized_song + ext))
                 else:
-                    print(dirname)
+                    print(album_item)
             elif ext == '.md5':
                 # Delete sum files since we're going to generate a new one.
                 if rename_active:
-                    os.remove(os.path.join(full_dirname, directory, dirname))
+                    os.remove(os.path.join(artist_album_dir, album_item))
             else:
                 print(colored('Skipping unknown type: ' + ext, 'red'))
         else:
-            sanitized_dir = sanitize.sanitize(dirname,
+            sanitized_dir = sanitize.sanitize(album_item,
                                               config['extra_dir_maxlen'])
 
-            if dirname != sanitized_dir:
-                print(colored(dirname + ' -> ' + sanitized_dir, 'yellow'))
+            if album_item != sanitized_dir:
+                print(colored(album_item + ' -> ' + sanitized_dir, 'yellow'))
 
                 if rename_active:
-                    os.rename(dirname, sanitized_dir)
-                    dirname = sanitized_dir
+                    os.rename(album_item, sanitized_dir)
+                    album_item = sanitized_dir
             else:
-                print(dirname)
+                print(album_item)
 
-            do_extra_dir(
-                os.path.join('.', full_dirname, directory), dirname, config,
-                rename_active)
+            do_extra_dir(artist_album_dir, album_item, config, rename_active)
 
 
 def do_extra_dir(full_dirname, directory, config, rename_active):
