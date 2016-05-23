@@ -30,6 +30,16 @@ def dir(request):
     os.mknod(os.path.join(dir, 'Sömé Àccents', 'album file.txt'))
     os.mknod(os.path.join(dir, 'Sömé Àccents', 'ânother album file.txt'))
 
+    songs = ['01 A song.flac', '02 Another song.flac', '03 Evérything.flac',
+             '04 A really long song title that will shorten.flac',
+             'folder.jpg', 'output.log', 'sums.md5']
+    for song in songs:
+        os.mknod(os.path.join(dir, 'Fine', '[1999] Some album', song))
+        os.mknod(os.path.join(dir, 'Fine', '[1999] Ánother album', song))
+        os.mknod(os.path.join(dir, 'Sömé Àccents', '[1999] Some album', song))
+        os.mknod(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                              song))
+
     prev = os.getcwd()
     os.chdir(dir)
 
@@ -165,3 +175,257 @@ def test_albums(dir):
     assert os.path.exists(os.path.join(dir, 'Some Accents', 'album file.txt'))
     assert os.path.exists(os.path.join(dir, 'Some Accents',
                                        'ânother album file.txt'))
+
+
+def test_dry_run_songs(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'sums.md5'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'sums.md5'))
+
+    music_rename.artists.get_artist_directories(
+        music_rename.config.get_populated_configuration(), False)
+
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'sums.md5'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'sums.md5'))
+
+
+def test_songs(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'sums.md5'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', '03 Evérything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                     '04 A really long song title that will shorten.flac'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'output.log'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'sums.md5'))
+
+    music_rename.artists.get_artist_directories(
+        music_rename.config.get_populated_configuration(), True)
+
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       '03 Everything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album',
+                     '04 A really long song title that will.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'output.log'))
+    assert not os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                           'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       '01 A song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       '02 Another song.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       '03 Everything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Another album',
+                     '04 A really long song title that will.flac'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       'output.log'))
+    assert not os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                           'sums.md5'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Some album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Some Accents', '[1999] Some album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Some Accents', '[1999] Some album', '03 Everything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Some album',
+                     '04 A really long song title that will.flac'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Some album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Some album', 'output.log'))
+    assert not os.path.exists(os.path.join(dir, 'Some Accents',
+                                           '[1999] Some album', 'sums.md5'))
+    assert os.path.exists(os.path.join(
+        dir, 'Some Accents', '[1999] Another album', '01 A song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Some Accents', '[1999] Another album', '02 Another song.flac'))
+    assert os.path.exists(os.path.join(
+        dir, 'Some Accents', '[1999] Another album', '03 Everything.flac'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Another album',
+                     '04 A really long song title that will.flac'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Another album', 'folder.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Another album', 'output.log'))
+    assert not os.path.exists(os.path.join(dir, 'Some Accents',
+                                           '[1999] Another album', 'sums.md5'))
