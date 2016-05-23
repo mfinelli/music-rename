@@ -697,10 +697,10 @@ def test_extra(dir):
                                        'a long extra', 'some-single.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Fine', '[1999] Some album', 'artwork',
-                     'a-many-character-string-i.jpg'))
+                     'a-many-character-string-item.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Fine', '[1999] Some album', 'a long extra',
-                     'a-many-character-string-i.jpg'))
+                     'a-many-character-string-it.jpg'))
     assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
                                        'artwork'))
     assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
@@ -713,10 +713,10 @@ def test_extra(dir):
                                        'a long extra', 'some-single.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Fine', '[1999] Another album', 'artwork',
-                     'a-many-character-string-i.jpg'))
+                     'a-many-character-string-item.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Fine', '[1999] Another album', 'a long extra',
-                     'a-many-character-string-i.jpg'))
+                     'a-many-character-string-it.jpg'))
     assert os.path.exists(os.path.join(dir, 'Some Accents',
                                        '[1999] Some album', 'artwork'))
     assert os.path.exists(os.path.join(dir, 'Some Accents',
@@ -731,10 +731,10 @@ def test_extra(dir):
                      'some-single.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Some Accents', '[1999] Some album', 'artwork',
-                     'a-many-character-string-i.jpg'))
+                     'a-many-character-string-item.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Some Accents', '[1999] Some album', 'a long extra',
-                     'a-many-character-string-i.jpg'))
+                     'a-many-character-string-it.jpg'))
     assert os.path.exists(os.path.join(dir, 'Some Accents',
                                        '[1999] Another album', 'artwork'))
     assert os.path.exists(os.path.join(dir, 'Some Accents',
@@ -749,7 +749,7 @@ def test_extra(dir):
                      'a long extra', 'some-single.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Some Accents', '[1999] Another album', 'artwork',
-                     'a-many-character-string-i.jpg'))
+                     'a-many-character-string-item.jpg'))
     assert os.path.exists(
         os.path.join(dir, 'Some Accents', '[1999] Another album',
-                     'a long extra', 'a-many-character-string-i.jpg'))
+                     'a long extra', 'a-many-character-string-it.jpg'))

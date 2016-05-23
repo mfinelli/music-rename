@@ -98,8 +98,12 @@ def do_extra_dir(artist_album_dir, extra_dir, config, rename_active):
         else:
             filename = os.path.splitext(extra)[0]
             ext = os.path.splitext(extra)[1]
-            sanitized_item = sanitize.sanitize(filename,
-                                               config['extra_maxlen'])
+
+            # use all of the available space with extra_dir + extra
+            allowance = config['extra_dir_maxlen'] - len(extra_dir)
+
+            sanitized_item = sanitize.sanitize(
+                filename, config['extra_maxlen'] + allowance)
 
             if filename != sanitized_item:
                 print(colored(extra + ' -> ' + sanitized_item + ext, 'yellow'))
