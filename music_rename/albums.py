@@ -80,7 +80,7 @@ def do_album_contents(artist_dir, album_dir, config, rename_active):
                 print(colored(album_item + ' -> ' + sanitized_dir, 'yellow'))
 
                 if rename_active:
-                    os.rename(album_item, sanitized_dir)
+                    os.rename(os.path.join(artist_album_dir, album_item), os.path.join(artist_album_dir, sanitized_dir))
                     album_item = sanitized_dir
             else:
                 print(album_item)
