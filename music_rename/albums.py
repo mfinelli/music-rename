@@ -80,7 +80,9 @@ def do_album_contents(artist_dir, album_dir, config, rename_active):
                 print(colored(album_item + ' -> ' + sanitized_dir, 'yellow'))
 
                 if rename_active:
-                    os.rename(os.path.join(artist_album_dir, album_item), os.path.join(artist_album_dir, sanitized_dir))
+                    os.rename(
+                        os.path.join(artist_album_dir, album_item),
+                        os.path.join(artist_album_dir, sanitized_dir))
                     album_item = sanitized_dir
             else:
                 print(album_item)
@@ -104,6 +106,9 @@ def do_extra_dir(full_dirname, directory, config, rename_active):
                               'yellow'))
 
                 if rename_active:
-                    os.rename(os.path.join(full_dirname, directory, dirname), os.path.join(full_dirname, directory, sanitized_item + ext))
+                    os.rename(
+                        os.path.join(
+                            full_dirname, directory, dirname), os.path.join(
+                                full_dirname, directory, sanitized_item + ext))
             else:
                 print(dirname)
