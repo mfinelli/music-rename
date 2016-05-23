@@ -40,6 +40,34 @@ def dir(request):
         os.mknod(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
                               song))
 
+    extra_dirs = ['artwork', 'video', 'a long extra directory']
+    for extra_dir in extra_dirs:
+        os.mkdir(os.path.join(dir, 'Fine', '[1999] Some album', extra_dir))
+        os.mkdir(os.path.join(dir, 'Fine', '[1999] Ánother album', extra_dir))
+        os.mkdir(os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                              extra_dir))
+        os.mkdir(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                              extra_dir))
+
+    extra_items = ['some-single.jpg', 'a-many-character-string-item.jpg']
+    for extra in extra_items:
+        os.mknod(os.path.join(dir, 'Fine', '[1999] Some album', 'artwork',
+                              extra))
+        os.mknod(os.path.join(dir, 'Fine', '[1999] Some album',
+                              'a long extra directory', extra))
+        os.mknod(os.path.join(dir, 'Fine', '[1999] Ánother album', 'artwork',
+                              extra))
+        os.mknod(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                              'a long extra directory', extra))
+        os.mknod(os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                              'artwork', extra))
+        os.mknod(os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                              'a long extra directory', extra))
+        os.mknod(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                              'artwork', extra))
+        os.mknod(os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                              'a long extra directory', extra))
+
     prev = os.getcwd()
     os.chdir(dir)
 
@@ -429,3 +457,299 @@ def test_songs(dir):
                                        '[1999] Another album', 'output.log'))
     assert not os.path.exists(os.path.join(dir, 'Some Accents',
                                            '[1999] Another album', 'sums.md5'))
+
+
+def test_dry_run_extra(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra directory'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra directory',
+                                       'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'a long extra directory'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'a long extra directory',
+                                       'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'video'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', 'a long extra directory'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', 'a long extra directory',
+        'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'video'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', 'a long extra directory'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', 'a long extra directory',
+        'a-many-character-string-item.jpg'))
+
+    music_rename.artists.get_artist_directories(
+        music_rename.config.get_populated_configuration(), False)
+
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra directory'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra directory',
+                                       'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'a long extra directory'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'a long extra directory',
+                                       'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'video'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', 'a long extra directory'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', 'a long extra directory',
+        'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'video'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', 'a long extra directory'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', 'a long extra directory',
+        'a-many-character-string-item.jpg'))
+
+
+def test_extra(dir):
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra directory'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra directory'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra directory',
+                                       'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'a long extra directory'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Ánother album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Ánother album',
+                                       'a long extra directory',
+                                       'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Some album', 'video'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', 'a long extra directory'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Some album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Some album', 'a long extra directory',
+        'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Sömé Àccents',
+                                       '[1999] Ánother album', 'video'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', 'a long extra directory'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album',
+                     'a long extra directory', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Sömé Àccents', '[1999] Ánother album', 'artwork',
+                     'a-many-character-string-item.jpg'))
+    assert os.path.exists(os.path.join(
+        dir, 'Sömé Àccents', '[1999] Ánother album', 'a long extra directory',
+        'a-many-character-string-item.jpg'))
+
+    music_rename.artists.get_artist_directories(
+        music_rename.config.get_populated_configuration(), True)
+
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Some album',
+                                       'a long extra', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album', 'artwork',
+                     'a-many-character-string-i.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Some album', 'a long extra',
+                     'a-many-character-string-i.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       'video'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       'a long extra'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       'artwork', 'some-single.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Fine', '[1999] Another album',
+                                       'a long extra', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Another album', 'artwork',
+                     'a-many-character-string-i.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Fine', '[1999] Another album', 'a long extra',
+                     'a-many-character-string-i.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Some album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Some album', 'video'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Some album', 'a long extra'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Some album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Some album', 'a long extra',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Some album', 'artwork',
+                     'a-many-character-string-i.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Some album', 'a long extra',
+                     'a-many-character-string-i.jpg'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Another album', 'artwork'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Another album', 'video'))
+    assert os.path.exists(os.path.join(dir, 'Some Accents',
+                                       '[1999] Another album', 'a long extra'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Another album', 'artwork',
+                     'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Another album',
+                     'a long extra', 'some-single.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Another album', 'artwork',
+                     'a-many-character-string-i.jpg'))
+    assert os.path.exists(
+        os.path.join(dir, 'Some Accents', '[1999] Another album',
+                     'a long extra', 'a-many-character-string-i.jpg'))
