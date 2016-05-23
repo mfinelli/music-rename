@@ -90,25 +90,24 @@ def do_album_contents(artist_dir, album_dir, config, rename_active):
             do_extra_dir(artist_album_dir, album_item, config, rename_active)
 
 
-def do_extra_dir(full_dirname, directory, config, rename_active):
-    for dirname in os.listdir(os.path.join(full_dirname, directory)):
-        if os.path.isdir(os.path.join(full_dirname, directory, dirname)):
-            print(colored('No support for directories this deep: ' + dirname,
+def do_extra_dir(artist_album_dir, extra_dir, config, rename_active):
+    for extra in os.listdir(os.path.join(artist_album_dir, extra_dir)):
+        if os.path.isdir(os.path.join(artist_album_dir, extra_dir, extra)):
+            print(colored('No support for directories this deep: ' + extra,
                           'red'))
         else:
-            filename = os.path.splitext(dirname)[0]
-            ext = os.path.splitext(dirname)[1]
+            filename = os.path.splitext(extra)[0]
+            ext = os.path.splitext(extra)[1]
             sanitized_item = sanitize.sanitize(filename,
                                                config['extra_maxlen'])
 
             if filename != sanitized_item:
-                print(colored(dirname + ' -> ' + sanitized_item + ext,
-                              'yellow'))
+                print(colored(extra + ' -> ' + sanitized_item + ext, 'yellow'))
 
                 if rename_active:
                     os.rename(
-                        os.path.join(
-                            full_dirname, directory, dirname), os.path.join(
-                                full_dirname, directory, sanitized_item + ext))
+                        os.path.join(artist_album_dir, extra_dir, extra),
+                        os.path.join(artist_album_dir, extra_dir,
+                                     sanitized_item + ext))
             else:
-                print(dirname)
+                print(extra)
