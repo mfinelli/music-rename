@@ -104,6 +104,6 @@ def do_extra_dir(full_dirname, directory, config, rename_active):
                               'yellow'))
 
                 if rename_active:
-                    os.rename(dirname, sanitized_item + ext)
+                    os.rename(os.path.join(full_dirname, directory, dirname), os.path.join(full_dirname, directory, sanitized_item + ext))
             else:
                 print(dirname)
